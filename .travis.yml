@@ -8,3 +8,16 @@ before_install:
 
 script:
   - docker run tinee/docker-aws-devops npm run test -- --coverage
+
+deploy:
+  provider: elasticbeanstalk
+  region: "eu-west-2"
+  app: "docker-aws-devops"
+  env: "DockerAwsDevops-env"
+  bucket_name: "elasticbeanstalk-eu-west-2-743089793964"
+  bucket_path: "docker-aws-devops"
+  on:
+    branch: master
+  access_key_id: "$AWS_ACCESS_KEY"
+  secret_access_key:
+    secure: "$AWS_SECRET_KEY"
