@@ -1,0 +1,10 @@
+sudo: required
+
+services:
+  - docker
+
+before_install:
+  - docker build -t tinee/docker-aws-devops -f dev.dockerfile .
+
+script:
+  - docker run tinee/docker-aws-devops npm run test
